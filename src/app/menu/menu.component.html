@@ -1,0 +1,88 @@
+<nav mat-tab-nav-bar class="nav">
+  <div mat-tab-link class="flex-fill" *ngFor="let link of navBarItem" [routerLink]="link.path" routerLinkActive
+    #rla="routerLinkActive" [active]="rla.isActive">
+    <div class="menu-item">
+      <i [class]="link.icon" style="font-size: x-large; text-align: center;" aria-hidden="true"></i>
+      <div class="menu-label">{{link.label}}</div>
+    </div>
+  </div>
+</nav>
+
+
+<mat-sidenav-container class="dom" autosize hasBackdrop="true">
+  <mat-sidenav position="start" #drawer mode="over">
+    <mat-list role="side">
+      <mat-list-item class="userInfoBox">
+
+      </mat-list-item>
+
+      <div>
+
+        <mat-list-item (click)="drawer.toggle()" role="listitem" *ngFor="let link of [{}]" [routerLink]="link.path">
+          <i class="fa fa-user-circle" style=" color: white; font-size: 200%;" aria-hidden="true"
+            (click)="drawer.toggle()"></i>
+
+          <label style="font-weight: bold!important;"
+            class="label">{{this.commonService.activeUser.firstname}}&nbsp;{{this.commonService.activeUser.lastname}}</label>
+          <mat-divider>
+          </mat-divider>
+        </mat-list-item>
+        <div *ngIf="this.commonService.activeUser.section == 'محیط زیست'||this.commonService.activeUser.section == null" >
+          <mat-expansion-panel class="panel">
+            <mat-expansion-panel-header class="mat-expansion-panel-header">
+              <mat-panel-title style="color: white; margin-top: 15px;">
+                <!-- <i class="fa fa-bug menuIcons" style=" color: white; font-size: 150% !important;" aria-hidden="true">
+              </i> -->
+                <p> بهداشت محیط </p>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list-item (click)="drawer.toggle()" role="listitem" *ngFor="let link of foodInspection"
+              [routerLink]="link.path">
+              <i [class]="link.icon" style="font-size: large;" class="menuIcons" aria-hidden="true"></i>
+              <span class="label">{{link.label}}</span>
+              <mat-divider>
+              </mat-divider>
+            </mat-list-item>
+          </mat-expansion-panel>
+        </div>
+
+        <div *ngIf="this.commonService.activeUser.section == 'بهداشت حرفه ای'||this.commonService.activeUser.section == null" >
+          <mat-expansion-panel class="panel">
+            <mat-expansion-panel-header class="mat-expansion-panel-header">
+              <mat-panel-title style="color: white; margin-top: 15px;">
+                <!-- <i class="fa fa-bug menuIcons" style=" color: white; font-size: 150% !important;" aria-hidden="true">
+              </i> -->
+                <p>گزارشات </p>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <mat-list-item (click)="drawer.toggle()" role="listitem" *ngFor="let link of evaluationDiscrepanciesReport"
+              [routerLink]="link.path">
+              <i [class]="link.icon" style="font-size: large;" class="menuIcons" aria-hidden="true"></i>
+              <span class="label">{{link.label}}</span>
+              <mat-divider>
+              </mat-divider>
+            </mat-list-item>
+
+          </mat-expansion-panel>
+        </div>
+
+        <mat-list-item (click)="drawer.toggle()" role="listitem" *ngFor="let link of rightMenu"
+          [routerLink]="link.path">
+          <i [class]="link.icon" style="font-size: large;" class="menuIcons" aria-hidden="true"></i>
+
+          <span class="label">{{link.label}}</span>
+          <mat-divider>
+          </mat-divider>
+        </mat-list-item>
+      </div>
+
+    </mat-list>
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <i class="fa fa-align-justify rightMenuIcon " aria-hidden="true" (click)="drawer.toggle()"></i>
+
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
