@@ -25,7 +25,7 @@ import { checklistAssesmentService } from 'src/app/services/checklistAssesmentSe
 export class ChecklistAssesmentComponent implements OnInit {
   favoriteSeason: string;
   seasons: string[] = [];
-  displayedColumns = ['number', 'desQuestionHeclq', 'options','desExplainQuestionHscha', 'process'];
+  displayedColumns = ['number', 'desQuestionHeclq', 'options', 'desExplainQuestionHscha', 'process'];
   edit = false;
   newRowObj: any;
   checklistId: any;
@@ -125,8 +125,8 @@ export class ChecklistAssesmentComponent implements OnInit {
         //   firstCtrl: [data.desChkHecli, Validators.required]
 
         // });
-        if(this.flgChkHecli!=1){
-          this.displayedColumns = ['number', 'desQuestionHeclq','namScoreHscha', 'desExplainQuestionHscha', 'process'];
+        if (this.flgChkHecli != 1) {
+          this.displayedColumns = ['number', 'desQuestionHeclq', 'namScoreHscha', 'desExplainQuestionHscha', 'process'];
         }
 
       }
@@ -198,6 +198,15 @@ export class ChecklistAssesmentComponent implements OnInit {
 
     this.checkListQuestionService.selectListOfQuestionsOfCheckList(this.checklistId).subscribe((success) => {
       this.ListOfcheckListsQuestions = success;
+      this.ListOfcheckListsOptions.forEach(eachListOfcheckListsOptions => {
+       if(eachListOfcheckListsOptions.desOptionHeclo == "مطلوب") {
+        let defaltOption = this.ListOfcheckListsOptions.filter(x => x.desOptionHeclo == "مطلوب")[0].eOptionId;
+        this.ListOfcheckListsQuestions.forEach(eachQuestion => {
+          eachQuestion['SelectedOptionId'] = defaltOption
+        })
+       }
+      });
+     
       console.log('ListOfcheckListsQuestions', this.ListOfcheckListsQuestions)
       this.dataSource = new MatTableDataSource(this.ListOfcheckListsQuestions);
       this.dataSource.paginator = this.paginator;
@@ -283,10 +292,10 @@ export class ChecklistAssesmentComponent implements OnInit {
 
   gotoStep3() {
 
- 
+
     this.ListOfcheckListsQuestions.forEach(eachQuestion => {
-debugger
-      if (eachQuestion['SelectedOptionId'] == undefined && this.flgChkHecli==1) {
+      debugger
+      if (eachQuestion['SelectedOptionId'] == undefined && this.flgChkHecli == 1) {
         this.commonService.showEventMessage("لطفا همه گزینه ها را تکمیل کنید", 3000, "green")
         this.topScroll.nativeElement.scrollIntoView({ behavior: 'smooth' });
         this.Validation = false;
