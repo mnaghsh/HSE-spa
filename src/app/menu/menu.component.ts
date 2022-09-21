@@ -35,6 +35,13 @@ export class MenuComponent implements OnInit {
           { label: 'چاپ گزارش', path: "/checklistReport", icon: "fa fa-newspaper-o" },
           { label: 'برنامه زمانبندی', path: "/scheduling", icon: "fa fa-calendar" },
         ];
+        this.evaluationDiscrepanciesReport = [
+          { label: 'چاپ گزارش چک لیست ها', path: "/checklistReport", icon: "fa fa-newspaper-o" },
+          { label: 'گزارش مغایرت ارزیابی های انجام شده بر اساس نام ارزیاب', path: "/evaluationDiscrepanciesReportByAssessor", icon: "fa fa-newspaper-o" },
+          { label: 'گزارش مغایرت ارزیابی های انجام شده بر اساس نام مکان', path: "/evaluationDiscrepanciesReportByLocation", icon: "fa fa-newspaper-o" },
+          { label: 'گزارش مغایرت ارزیابی های انجام شده بر اساس نام چک لیست', path: "/evaluationDiscrepanciesReportByCheckList", icon: "fa fa-newspaper-o" },
+  
+        ];
       }
       if (this.commonService.activeUser.accessLevel == "کارشناس") {
         this.navBarItem = [
@@ -43,6 +50,13 @@ export class MenuComponent implements OnInit {
           { label: 'انجام ارزیابی', path: "/checklistAssesment", icon: "fa fa-print" },
           { label: 'چاپ گزارش', path: "/checklistReport", icon: "fa fa-newspaper-o" },
           { label: 'برنامه زمانبندی', path: "/scheduling", icon: "fa fa-calendar" },
+        ];
+        this.evaluationDiscrepanciesReport = [
+          { label: 'چاپ گزارش چک لیست ها', path: "/checklistReport", icon: "fa fa-newspaper-o" },
+          { label: 'گزارش مغایرت ارزیابی های انجام شده بر اساس نام ارزیاب', path: "/evaluationDiscrepanciesReportByAssessor", icon: "fa fa-newspaper-o" },
+          { label: 'گزارش مغایرت ارزیابی های انجام شده بر اساس نام مکان', path: "/evaluationDiscrepanciesReportByLocation", icon: "fa fa-newspaper-o" },
+          { label: 'گزارش مغایرت ارزیابی های انجام شده بر اساس نام چک لیست', path: "/evaluationDiscrepanciesReportByCheckList", icon: "fa fa-newspaper-o" },
+  
         ];
       }
       if (this.commonService.activeUser.accessLevel == "بازرس") {
@@ -160,6 +174,8 @@ export class MenuComponent implements OnInit {
         { label: 'تعریف چک لیست', path: "/createCheckList", icon: "fa fa-pencil" },
         { label: 'انجام ارزیابی', path: "/checklistAssesment", icon: "fa fa-print" },
         { label: 'چاپ گزارش', path: "/checklistReport", icon: "fa fa-newspaper-o" },
+        { label: 'کارنامه محیط زیست ', path: "/workbookReport", icon: "fa fa-diamond" },
+
 
       ];
       this.rightMenu = [
