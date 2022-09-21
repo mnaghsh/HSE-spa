@@ -34,6 +34,14 @@
             <mat-option *ngFor="let f of department" [value]="f.viewValue">{{f.viewValue}}</mat-option>
           </mat-select>
         </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label> تاریخ بازرسی</mat-label>
+          <input formControlName="thirdCtrl" required placeholder="از تاریخ" matInput type="text" #dateOfInspection />
+          <ng-persian-datepicker [timeEnable]="false" [uiTheme]="'blue'" [dateFormat]="'jYYYY-jMM-jDD HH:mm:ss'"
+            [input]="dateOfInspection">
+          </ng-persian-datepicker>
+        </mat-form-field>
+
         <!-- <mat-form-field appearance="fill">
           <mat-label> ناحیه در حال بازرسی</mat-label>
           <input  matInput formControlName="thirdCtrl" required>

@@ -49,6 +49,8 @@ export class ChecklistReportComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public recievedData
 
   ) {
+    this.commonService.loading=false;
+
     //console.log('recievedData', this.recievedData)
     if (this.recievedData.itsPopup == true) {
       const body = {
@@ -64,7 +66,7 @@ export class ChecklistReportComponent implements OnInit {
       }
       this.serverFilter(body)
     }
-    else{
+    else {
       this.getChecklistQuestions()
 
     }
@@ -76,6 +78,8 @@ export class ChecklistReportComponent implements OnInit {
   }
 
   public getChecklistQuestions() {
+    this.commonService.showEventMessage("حداکثر 1000 ردیف نمایش داده می شود - در صورت نیاز از فیلتر استفاده کنید !", 3000, "green")
+
     this.namChkHecliFilter = ""
     this.namDepartmentHecliFilter = ""
     this.namAssessorHsrchFilter = ""
@@ -135,9 +139,9 @@ export class ChecklistReportComponent implements OnInit {
 
 
   serverFilter(body?: any) {
-    
+
     this.search = ""
-    
+
     if (body == null) {
       let start = moment(this.startDate.nativeElement.value, 'jYYYY/jM/jD');
       let end = moment(this.endDate.nativeElement.value, 'jYYYY/jM/jD');
@@ -161,11 +165,11 @@ export class ChecklistReportComponent implements OnInit {
     }
     this.commonService.loading = true;
     this.checklistAssesmentService.filterListOfChecklistReport(body).subscribe((success) => {
-      if(success.length==0){
+      if (success.length == 0) {
         this.commonService.showEventMessage("به فیلتر تاریخ دقت کنید", 2000, "green")
-
       }
-      
+    
+
       this.viewThePercentageOfOptions(success)
       this.dataSource = new MatTableDataSource(success);
       this.dataSource.paginator = this.paginator;
@@ -199,14 +203,14 @@ export class ChecklistReportComponent implements OnInit {
   //            text-align: right;
   //          }
   //          td{
-               
+
   //            border: 0px solid gray;
   //            border-left: 1px solid gray;
   //            border-bottom: 1px solid gray;
   //            font-size: medium;
-            
+
   //          }
-         
+
   //          .table-striped tbody tr:nth-of-type(odd) {
   //            background-color: rgba(0,0,0,.05);
   //        }
@@ -216,7 +220,7 @@ export class ChecklistReportComponent implements OnInit {
   //       .gridTotal{
   //        width:100%;
   //       }
-          
+
   //          .mat-sort-header-button{
   //            border-bottom: 1px solid gray;
   //            font-size: medium;
@@ -224,7 +228,7 @@ export class ChecklistReportComponent implements OnInit {
   //            border: 0px solid gray;
   //            text-align: center;
   //          }
-          
+
   //        //........Customized style.......
   //        </style>
   //       </head>
@@ -236,9 +240,9 @@ export class ChecklistReportComponent implements OnInit {
   viewThePercentageOfOptions(data) {
     let optionsText = [];
     data.forEach(eachRowOfReport => {
-     // if (optionsText != eachRowOfReport['desOptionHeclo']) {
-        optionsText.push(eachRowOfReport['desOptionHeclo'])
-    //  }
+      // if (optionsText != eachRowOfReport['desOptionHeclo']) {
+      optionsText.push(eachRowOfReport['desOptionHeclo'])
+      //  }
     }); //console.log('optionsText', optionsText)
 
     var counts = {};

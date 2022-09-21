@@ -43,6 +43,8 @@ export class CreateCheckListComponent implements OnInit {
   ) {
     this.getChecklists();
     this.fillDropDowns();
+    this.commonService.loading=false;
+
 
   }
   ngAfterViewInit() {
@@ -141,6 +143,12 @@ export class CreateCheckListComponent implements OnInit {
   }
 
   public updateRow(row) {
+    if(row.flgChkHecli==false){
+      row.flgChkHecli=0
+    }
+    if(row.flgChkHecli==true){
+      row.flgChkHecli=1
+    }
     this.edit = !this.edit;
     this.checkListService.updateListOfcheckLists(row['eCheckListId'], row).subscribe((success) => {
       this.commonService.showEventMessage("ويرايش رديف با موفقيت انجام شد.", 3000, "green")

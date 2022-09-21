@@ -9,6 +9,8 @@ baseUrl = 'https://localhost:44377/api/'
 //baseUrl = 'http://93.126.21.21:7273/api/'
 //baseUrl="http://192.168.18.117:8080/server/api/"
 //baseUrl="http://172.19.1.37/server/api/"
+//baseUrl = 'http://hse.msc.ir/server/api/'
+
 
   constructor(public http: HttpClient) {
   }

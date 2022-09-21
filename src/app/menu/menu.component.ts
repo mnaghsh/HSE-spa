@@ -164,7 +164,7 @@ export class MenuComponent implements OnInit {
       ];
       this.rightMenu = [
         // { label: ' صفحه اصلی', path: "/home", icon: "fa fa-home" },
-        { label: ' کارنامه محیط زیست', path: "/workbookReport", icon: "fa fa-diamond" },
+        // { label: ' کارنامه محیط زیست', path: "/workbookReport", icon: "fa fa-diamond" },
         { label: 'تعریف چک لیست', path: "/createCheckList", icon: "fa fa-pencil" },
         { label: 'انجام ارزیابی', path: "/checklistAssesment", icon: "fa fa-print" },
         { label: 'چاپ گزارش', path: "/checklistReport", icon: "fa fa-newspaper-o" },

@@ -53,6 +53,7 @@ const myRoots: Routes = [
       { path: 'questions', component: ChecklistQuestionsComponent },
       { path: 'checklistAssesment', component: ChecklistAssesmentComponent },
       { path: 'locations', component: LocationsComponent },
+      { path: 'zones', component: ZonesComponent },
       { path: 'checklistReport', component: ChecklistReportComponent },
       { path: 'users', component: UsersComponent },
       { path: 'messages', component: MessagesComponent },
